@@ -12,7 +12,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className, ...props }) => {
     const inverseMessages = [...messages].reverse()
 
     return <div {...props} className={cn(
-        'flex flex-col-reverse gap-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch', className
+        'flex flex-col-reverse gap-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue scrollbar-w-2 scrolling-touch', className
     )}>
 
         <div className='flex-1 flex-grow' />
@@ -28,7 +28,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className, ...props }) => {
                             'order-2 items-start': !message.isUserMessage
                         })}>
                             <p className={cn('px-4 py-2 rounded-lg', {
-                                'bg-blue-600 text-white': message.isUserMessage,
+                                'bg-indigo-600 text-white': message.isUserMessage,
                                 'bg-gray-200 text-gray-900': !message.isUserMessage
                             })}>
                                 <MarkdownLite text={message.text} />

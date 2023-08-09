@@ -88,8 +88,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
     )
 
     return (
-        <div {...props} className={cn('border-t border-zinc-300', className)}>
-            ChatInput
+        <div {...props} className={cn('border-t-[1px] border-dotted border-slate-600 pb-2', className)}>
             <div className='relative mt-4 flex-1 overflow-hidden rounded-lg border-none outline-none'>
                 <TextareaAutosize
                     ref={textareaRef}
@@ -110,17 +109,17 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
                     value={inputValue}
                     onChange={(event) => setInputValue(event.target.value)}
                     placeholder='Write a message...'
-                    className='peer disabled:opacity-50 pr-14 resize-none block w-full border-0 bg-zinc-100 py-1.5 text-gray-900 focus:ring-0 text-sm sm:leading-6'
+                    className='peer disabled:opacity-50 pr-14 resize-none block w-full border-zinc-300 border-0 bg-slate-700 py-1.5 text-white focus:ring-0 text-sm sm:leading-6'
                 />
 
                 <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
-                    <kbd className='inline-flex items-flex rounded border bg-white border-gray-200 px-1 font-sans text-xs text-gray-400'>
+                    <kbd className='inline-flex items-flex rounded border bg-white border-gray-500 px-1 font-sans text-xs text-gray-400'>
                         {
                             isLoading ? <Loader2 className='w-3 h-3 animate-spin' /> : <CornerDownLeft className='w-3 h-3' />
                         }
                     </kbd>
                 </div>
-                <div aria-hidden='true' className='absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600' />
+                <div aria-hidden='true' className='absolute inset-x-0 bottom-0 border-t border-gray-900 peer-focus:border-t-2 peer-focus:border-indigo-600' />
             </div>
         </div>
     )

@@ -50,7 +50,7 @@ const HistoryChart: FC<HistoryChartProps> = ({ coinId, detailCoin }) => {
             },
             title: {
                 display: true,
-                text: '1 year monthly chart of',
+                text: '90 days - daily chart',
                 color: 'white', // Set the color of the chart title
             },
         },

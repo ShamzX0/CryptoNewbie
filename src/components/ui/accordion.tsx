@@ -3,8 +3,9 @@
 import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDown } from "lucide-react"
-
 import { cn } from "@/lib/utils"
+
+
 
 const Accordion = AccordionPrimitive.Root
 
@@ -24,7 +25,7 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
+  <AccordionPrimitive.Header className="flex bg-slate-800 border-[2px] border-zinc-400 rounded-tl-md rounded-tr-md border-b-0">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
@@ -34,7 +35,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 text-black transition-transform duration-200" />
+      <ChevronDown className="h-4 w-4 scale-[1.6] text-zinc-200 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))
@@ -47,7 +48,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-zinc-400 border-[2px] rounded-bl-md rounded-br-md",
       className
     )}
     {...props}

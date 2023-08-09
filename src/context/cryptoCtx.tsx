@@ -83,7 +83,7 @@ export const CoinMarketProvider = ({ children }: { children: ReactNode }) => {
     )
 
 
-    // tahle funkce nam vytahuje vsecny data ktery chceme dostat z rawDat. 
+    // tahle funkce nam vytahuje vsechny data ktery chceme dostat z rawDat. 
     // tuhle funkci si pak zavolam v cardList a posilame sem cislo podle toho jestli user scrollnul na bottom of the page (page: number) 
     // getting all our coins to be rendered on tha main page in Card component
     const getCoins = async (page: number) => {
@@ -163,7 +163,7 @@ export const CoinMarketProvider = ({ children }: { children: ReactNode }) => {
     const getChartData = async (id: string) => {
 
         try {
-            const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365&interval=monthly`, {
+            const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=90&interval=daily`, {
                 method: 'GET',
                 headers: {
                     'accept': 'application/json'
@@ -185,9 +185,10 @@ export const CoinMarketProvider = ({ children }: { children: ReactNode }) => {
             return data
 
         } catch (e) {
-            throw new Error('Something went wrong')
+            throw new Error('Something went wrong with chartData API')
         }
     }
+    console.log(getChartData)
 
     // getting top 5 trending coins
     const getTrendingData = async () => {
