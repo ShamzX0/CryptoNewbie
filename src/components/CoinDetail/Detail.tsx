@@ -30,139 +30,139 @@ const Detail: FC<DetailProps> = ({ }) => {
 
 
     return (
-        <main className='max-w-screen-xl mx-auto text-zinc-300'>
-            <div className='flex max-w-screen-2xl m-auto pt-10 flex-col justify-between lg:flex-row'>
-                <div className='flex flex-col'>
-                    <div className='flex flex-col sm:flex-row justify-between'>
-                        <div className='flex items-center mr-[4.5rem]'>
-                            {detailCoin?.image.large && (
-                                <Image
-                                    src={detailCoin.image.large}
-                                    height={55}
-                                    width={55}
-                                    alt={`${detailCoin.name} logo`}
-                                    className='items-center justify-center h-55 w-55 mr-4'
-                                />
-                            )}
-                            <div>
-                                <div className='flex'>
-                                    <p className='text-3xl'>{detailCoin?.name}</p>
-                                    &nbsp; &nbsp;
-                                    <p className='bg-slate-800 text-zinc-300 flex items-center px-3 rounded-xl'>{detailCoin?.symbol}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='pl-5 pt-5 sm:pl-0 sm:pt-0'>
-                            <div className='flex pb-1'>
-                                <p className='text-zinc-400 font-medium'>
+        <main className='flex flex-row items-center p-4 text-zinc-300'>
+            <div className='flex w-3/5'>
+
+                <section className='flex flex-col lg:flex-row'>
+                    {/* Left Column - Coin Details */}
+                    <article className='flex flex-col'>
+                        {/* Coin Header */}
+                        <header className='flex flex-col sm:flex-row justify-between'>
+                            {/* Logo and Name */}
+                            <figure className='flex items-center'>
+                                {detailCoin?.image.large && (
+                                    <Image
+                                        src={detailCoin.image.large}
+                                        height={55}
+                                        width={55}
+                                        alt={`${detailCoin.name} logo`}
+                                        className='mr-4'
+                                    />
+                                )}
+                                <figcaption>
+                                    <h1 className='flex gap-2'>
+                                        <span className='text-3xl'>{detailCoin?.name}</span>
+                                        <span className='bg-slate-800 text-zinc-300 px-3 rounded-xl'>{detailCoin?.symbol}</span>
+                                    </h1>
+                                </figcaption>
+                            </figure>
+
+                            {/* Price Section */}
+                            <section className='pl-5 pt-5 sm:pl-0 sm:pt-0'>
+                                <p className='text-zinc-400 font-medium pb-1'>
                                     {detailCoin?.name} ({detailCoin?.symbol.toLocaleUpperCase()})
                                 </p>
-                            </div>
-                            <div className='flex items-start'>
-                                <h1 className='text-zinc-200 text-4xl'>{currencyFormat(currentPrice)}</h1>
-                                &nbsp;&nbsp;&nbsp;
-                                <div className={cn('flex items-center px-3 py-1.5 ml-3 rounded-xl text-zinc-200', {
-                                    'bg-green-600': priceChange24h > 0,
-                                    'bg-red-600': priceChange24h < 0,
-
-                                })}>
-                                    {priceChange24h > 0 ? (
-                                        <ArrowBigUp className='h-4 w-4' />
-                                    ) : priceChange24h === 0 ? (
-                                        null
-                                    ) : (
-                                        <ArrowBigDown className='h-4 w-4' />
-                                    )}
-                                    <small className='pl-1'>{priceChange24h.toFixed(3)}%</small>
+                                <div className='flex items-start'>
+                                    <span className='text-zinc-200 text-4xl'>{currencyFormat(currentPrice)}</span>
+                                    <span className={cn('flex items-center px-3 py-1.5 ml-3 rounded-xl text-zinc-200', {
+                                        'bg-green-600': priceChange24h > 0,
+                                        'bg-red-600': priceChange24h < 0,
+                                    })}>
+                                        {priceChange24h > 0 ? (
+                                            <ArrowBigUp className='h-4 w-4' />
+                                        ) : priceChange24h === 0 ? (
+                                            null
+                                        ) : (
+                                            <ArrowBigDown className='h-4 w-4' />
+                                        )}
+                                        <small className='pl-1'>{priceChange24h.toFixed(3)}%</small>
+                                    </span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </section>
+                        </header>
 
-
-                    {/* market cap etc */}
-                    <div className='flex justify-between flex-col sm:flex-row p-4 mt-[4rem] border-b border-t border-gray-800 '>
-                        <div className='flex'>
-                            <div className='pr-2 ml-1 md:ml-10 sm:pl-5 w-full'>
-                                <div>
-                                    <small className={styles.title}>Market Cap</small>
-                                </div>
-                                <small>{currencyFormat(marketCap)}</small>
-                            </div>
-
-                            <div className='ml-1 md:ml-10 pl-5 w-full sm:border-l sm:border-gray-800'>
-                                <div>
-                                    <div>
+                        {/* Statistics Grid */}
+                        <section className='flex flex-col gap-4 p-4 mt-[4rem] border-y border-gray-700'>
+                            {/* Stats Container */}
+                            <div className='flex flex-wrap gap-4'>
+                                {/* Column 1 */}
+                                <div className='flex-1 min-w-[200px] space-y-4'>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
+                                        <small className={styles.title}>Market Cap</small>
+                                        <p><small>{currencyFormat(marketCap)}</small></p>
+                                    </div>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
                                         <small className={styles.title}>Fully Diluted Market Cap</small>
+                                        <p><small>{currencyFormat(fullMarketCap)}</small></p>
                                     </div>
-                                    <small>{currencyFormat(fullMarketCap)}</small>
                                 </div>
-                                <br />
-                                <div>
-                                    <div>
+
+                                {/* Column 2 */}
+                                <div className='flex-1 min-w-[200px] space-y-4'>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
                                         <small className={styles.title}>Price change 24h</small>
+                                        <p>
+                                            <small className={cn({
+                                                'text-red-600': priceChange24h < 0,
+                                                'text-green-600': priceChange24h > 0,
+                                            })}>
+                                                {priceChange24h.toFixed(2)}%
+                                            </small>
+                                        </p>
                                     </div>
-                                    <small className={cn({
-                                        'text-red-600': priceChange24h < 0,
-                                        'text-green-600': priceChange24h > 0,
-
-                                    })}>{priceChange24h.toFixed(2)}%</small>
-                                </div>
-                            </div>
-                        </div>
-                        {/* --------- */}
-                        <div className='flex '>
-                            <div className='ml-1 md:ml-8 sm:pl-5 w-full sm:border-l sm:border-gray-800'>
-                                <div className='border-t border-gray-800 sm:border-none'>
-                                    <div>
-                                        <small className={styles.title}>All time high</small>
-                                    </div>
-                                    <small>{currencyFormat(ath)}</small>
-                                </div>
-                                <br />
-                                <div>
-                                    <div>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
                                         <small className={styles.title}>Price change 1y</small>
+                                        <p>
+                                            <small className={cn({
+                                                'text-red-600': priceChange1y < 0,
+                                                'text-green-600': priceChange1y > 0,
+                                            })}>
+                                                {priceChange1y.toFixed(2)}%
+                                            </small>
+                                        </p>
                                     </div>
-                                    <small className={cn({
-                                        'text-red-600': priceChange1y < 0,
-                                        'text-green-600': priceChange1y > 0,
-
-                                    })}>{priceChange1y.toFixed(2)}%</small>
                                 </div>
-                            </div>
 
-                            <div className='ml-1 md:ml-10 pl-5 w-full sm:border-l sm:border-gray-800'>
-                                <div className='border-t border-gray-800 sm:border-none'>
-                                    <div>
+                                {/* Column 3 */}
+                                <div className='flex-1 min-w-[200px] space-y-4'>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
+                                        <small className={styles.title}>All time high</small>
+                                        <p><small>{currencyFormat(ath)}</small></p>
+                                    </div>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
+                                        <small className={styles.title}>Volume</small>
+                                        <p><small>{currencyFormat(volume)}</small></p>
+                                    </div>
+                                </div>
+
+                                {/* Column 4 */}
+                                <div className='flex-1 min-w-[200px] space-y-4'>
+                                    <div className='px-2 py-1 rounded-md bg-slate-700'>
                                         <small className={styles.title}>Circulating Supply</small>
-                                    </div>
-                                    <small>{numbersFormat(CSSupply)} {detailCoin?.symbol.toLocaleUpperCase()}</small>
-                                </div>
-                                <br />
-                                <div>
-                                    <div>
-                                        <div>
-                                            <small className={styles.title}>Volume</small>
-                                        </div>
-                                        <small>{currencyFormat(volume)}</small>
+                                        <p>
+                                            <small>
+                                                {numbersFormat(CSSupply)} {detailCoin?.symbol.toLocaleUpperCase()}
+                                            </small>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className='flex mt-5 lg:mt-0 mx-auto lg:mx-0'>
-                    <div className='flex items-center justify-center'>
-                        <Image src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" width={300} height={300} className='rounded-xl' />
-
-                    </div>
-                </div>
+                        </section>
+                    </article>
+                </section>
+                {/* Fear & Greed Index */}
             </div>
-        </main >
-    )
+            <aside className='flex justify-center w-2/5 mt-5 lg:mt-0 lg:mx-0'>
+                <Image
+                    src="https://alternative.me/crypto/fear-and-greed-index.png"
+                    alt="Latest Crypto Fear & Greed Index"
+                    width={300}
+                    height={300}
+                    className='rounded-xl'
+                />
+            </aside>
+        </main>
+    );
 
 }
 

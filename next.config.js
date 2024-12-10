@@ -5,7 +5,7 @@ module.exports = nextConfig
 
 module.exports = {
     images: {
-        domains: ['assets.coingecko.com', 'cdn.moralis.io', 'cryptologos.cc'],
+        domains: ['assets.coingecko.com', 'coin-images.coingecko.com', 'cdn.moralis.io', 'cryptologos.cc'],
         remotePatterns: [
             {
                 protocol: 'https',

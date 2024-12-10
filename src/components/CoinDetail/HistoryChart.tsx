@@ -89,7 +89,7 @@ const HistoryChart: FC<HistoryChartProps> = ({ coinId, detailCoin }) => {
             <Line options={options} data={data} className="text-white" />
         </div>
         <div>
-            <div className="bg-gray-800 p-4 rounded-lg">
+            <div className="bg-gray-700 p-4 rounded-lg">
                 <h2 className="text-zinc-200 text-xl font-bold mb-4">Description</h2>
                 <p className="mt-6 text-gray-300 text-sm">
                     {detailCoin.description.en.length === 0 ? (

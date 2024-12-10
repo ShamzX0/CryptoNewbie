@@ -20,6 +20,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
 
     const { messages, addMessage, removeMessage, updateMessage, setIsMessageUpdating } = useContext(MessagesContext)
 
+    // creating ref for textarea, so after submitting we can automatically put the focus back on the input and user can keep writing without having to click on the input
     const textareaRef = useRef<null | HTMLTextAreaElement>(null)
 
     const { mutate: sendMessage, isLoading } = useMutation({
@@ -38,6 +39,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
 
             return response.body
         },
+        // we want to put the messages into a state
         onMutate(message) {
             addMessage(message)
         },
@@ -48,18 +50,19 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
             if (!stream) {
                 throw new Error('No stream Found.')
             }
-
+            //constructing the bot message
             const id = nanoid()
             const responseMessage: Message = {
                 id,
                 isUserMessage: false,
                 text: '',
             }
-
+            //now I need to add the message to our response state
             addMessage(responseMessage)
 
             setIsMessageUpdating(true)
 
+            // now lets decode the stream
             const reader = stream.getReader()
             const decoder = new TextDecoder()
 
@@ -68,13 +71,15 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
             while (!done) {
                 const { value, done: doneReading } = await reader.read()
                 done = doneReading
+                // now I decoded the text into regular string and we can display it to the user
                 const chunkValue = decoder.decode(value)
-                updateMessage(id, (prev) => prev + chunkValue)
+                //now I want to update the message with the id we just created
+                updateMessage(id, (prev) => prev + chunkValue) // this puts all the chunks of messages we got back (usually by each word) and it puts them in one answer
             }
 
             setInputValue('')
             setIsMessageUpdating(false)
-
+            //now you can refocus to the text area so the user can write a message again without having to click
             setTimeout(() => {
                 textareaRef.current?.focus()
             }, 10)
